@@ -1,0 +1,81 @@
+RabbitMQ
+
+What is message and why we need it?
+	loosely-coupled
+	asynchronous
+	progressively
+
+Messaging protocols
+	STOMP (Simple Text-Oriented Messaging Protocol)
+		Uses SEND semantic with a "destination" string
+		The receiver implements queues, topics and exchanges
+		Consumers must subscribe to the destination.
+
+	MQTT(Message Queue Telemetry Transport)
+		Machine-to-machine(m2m) connectivity protocol
+		Highly-standardized
+		Simple push-subscribe messaging
+
+	AMQP(Advanced Message Queuing Protocol)
+		Highly-standardized 
+		Reliable and interoperable
+		Provides a wide range of features related to messaging.
+		Implement AMQP solutions from different vendors.
+
+What is RabbitMQ?
+	Open source message broker (message oriented middleware)
+	Developed using Erlang: high throughput, low latency
+	Supports clustering
+	Protocol defines exchanges, queues and bindings
+	Allows multiple connection channels inside a single TCP connection.
+
+Actors of messaging in RabbitMQ
+	Publisher > message > Exchange > routes > Queue > Subscriber
+
+	Exchanges
+		Pool of messages.
+		Actual AMQP elements where messages are sent at first.
+		Takes a message and routes it into one or more queues.
+		Routing algorithms depends on the exchange type and binding
+		configs.
+		-Direct Exchange (amq.direct)
+			Default exchange, no binding or exchange config.
+		-Fanout Exchange (amq.fanout)
+			Message is sent to all the queues binded to the exchange.
+		-Topic Exchange (amq.topic)
+			??
+		-Headers Exchange (amq.match)
+			??
+	Queues
+		Core element in any MQ protocol.
+		Messages are routed to queues from exchanges
+		Final destination before being received by subscribers
+		
+		Properties
+			Name
+				The name of the queue
+			Durable
+				Either persists the queue on disk or not
+			Exclusive
+				Delete the queue if no longer used
+			Auto-delete
+				Delete the queue when consumer unsubscribes
+
+	Topic
+		Topics are the "subject" part of the messages
+		Define as routing_key for message grouping
+		Optional parameter for message exchange
+		You can send and receive messages without any topic information
+	Binding
+		Exchange > binding > Queue
+		Rules that exchanges use to route messages to queues
+		Instruct exchange E to route messages to a queue K, K has to be bound to E.
+		May have optional routing key attribute used by some exchange types	
+		
+		
+			
+	
+	
+		
+	 
+		
